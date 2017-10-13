@@ -1,8 +1,14 @@
 package com.lukasowy.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //AbstractPersistable class will add primary key
 //No need to give column name like userName = user_name that will take care automatically
@@ -10,16 +16,28 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class User extends AbstractPersistable<Long> {
 
 	private static final long serialVersionUID = 1L;
-	private String userId;
+	private String userIdd;
 	private String userName;
 	private String password;
 
-	public String getUserId() {
-		return userId;
+	@JsonIgnore
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	private List<Address> adresses;
+
+	public List<Address> getAdresses() {
+		return adresses;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setAdresses(List<Address> adresses) {
+		this.adresses = adresses;
+	}
+
+	public String getUserIdd() {
+		return userIdd;
+	}
+
+	public void setUserIdd(String userId) {
+		this.userIdd = userId;
 	}
 
 	public String getUserName() {
