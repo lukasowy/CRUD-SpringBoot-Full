@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -20,9 +22,21 @@ public class User extends AbstractPersistable<Long> {
 	private String userName;
 	private String password;
 
+	@ManyToOne
+	@JoinColumn(name = "role_id")
+	private Role role;
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Address> adresses;
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
 
 	public List<Address> getAdresses() {
 		return adresses;
