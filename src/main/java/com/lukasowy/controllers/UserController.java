@@ -5,8 +5,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lukasowy.models.User;
@@ -24,16 +25,24 @@ public class UserController {
 		this.userService = userService;
 	}
 
+	@GetMapping("/form")
+	public String userForm(Model model) {
+		model.addAttribute("userForm", new User());
+		model.addAttribute("roles", userService.roleList());
+		return "user/form";
+	}
+
 	@RequestMapping("/delete/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String deleteUser(@PathVariable Long id) {
 		return userService.deleteUser(id);
 	}
 
-	@RequestMapping("/add")
+	@PostMapping("/add")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public User addUser(@RequestBody User user) {
-		return userService.addUser(user);
+	public String addUser(@ModelAttribute User user, Model model) {
+		model.addAttribute("message", userService.addUser(user).getUserName() + " added successfully.");
+		return "message";
 	}
 
 	@RequestMapping("/list/{id}")

@@ -18,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class User extends AbstractPersistable<Long> {
 
 	private static final long serialVersionUID = 1L;
+	private transient Long id;
 	private String userIdd;
 	private String userName;
 	private String password;
@@ -29,6 +30,14 @@ public class User extends AbstractPersistable<Long> {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Address> adresses;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Role getRole() {
 		return role;
