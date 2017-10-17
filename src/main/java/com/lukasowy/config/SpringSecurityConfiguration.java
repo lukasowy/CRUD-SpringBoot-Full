@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.AuthenticationEntryPoint;
 
 import com.lukasowy.services.impl.MyUserDetailsService;
 
@@ -16,8 +15,8 @@ import com.lukasowy.services.impl.MyUserDetailsService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private AuthenticationEntryPoint entryPoint;
+	// @Autowired
+	// private AuthenticationEntryPoint entryPoint;
 
 	@Autowired
 	private MyUserDetailsService userDetailsService;
@@ -29,7 +28,8 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().anyRequest().authenticated().and().httpBasic().authenticationEntryPoint(entryPoint);
+		http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/user/login").permitAll()
+				.and().logout().permitAll();
 	}
 
 	// @Autowired
