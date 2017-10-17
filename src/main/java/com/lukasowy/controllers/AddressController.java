@@ -34,20 +34,35 @@ public class AddressController {
 		return "address/form";
 	}
 
-	@RequestMapping("/delete/{id}")
-	public String deleteUser(@PathVariable Long id) {
-		return addressService.deleteAddress(id);
+	@GetMapping("/edit/{id}")
+	public String editAddress(@PathVariable Long id, Model model) {
+		model.addAttribute("addressForm", addressService.findOne(id));
+		model.addAttribute("roles", userService.userList());
+		return "address/form";
+	}
+
+	@GetMapping("/delete/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public String deleteUser(@PathVariable Long id, Model model) {
+		model.addAttribute("message", addressService.deleteAddress(id));
+		return "message";
 	}
 
 	@PostMapping("/add")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String addUaddAddressser(@ModelAttribute Address address, Model model) {
+		String message = "";
+		if (address.getId() == null) {
+			message = " added";
+		} else {
+			message = " updated";
+		}
 		model.addAttribute("message",
-				addressService.addAddress(address).getUser().getUserName() + " address added successfully");
+				addressService.addAddress(address).getUser().getUserName() + " address" + message + "successfully");
 		return "message";
 	}
 
-	@RequestMapping("/list/{id}")
+	@GetMapping("/list/{id}")
 	public Address findOne(@PathVariable Long id) {
 		return addressService.findOne(id);
 	}

@@ -11,6 +11,7 @@
 
 <body>
 	<form:form method="post" action="${path}/address/add" commandName="addressForm">
+	<form:hidden path="id"/>
 		<p>
 			Country:
 			<form:input path="country" placeholder="Enter Country" />

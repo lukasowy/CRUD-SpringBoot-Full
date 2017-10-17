@@ -32,20 +32,34 @@ public class UserController {
 		return "user/form";
 	}
 
-	@RequestMapping("/delete/{id}")
+	@GetMapping("/edit/{id}")
+	public String editUser(@PathVariable Long id, Model model) {
+		model.addAttribute("userForm", userService.findOne(id));
+		model.addAttribute("roles", userService.roleList());
+		return "user/form";
+	}
+
+	@GetMapping("/delete/{id}")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String deleteUser(@PathVariable Long id) {
-		return userService.deleteUser(id);
+	public String deleteUser(@PathVariable Long id, Model model) {
+		model.addAttribute("message", userService.deleteUser(id));
+		return "message";
 	}
 
 	@PostMapping("/add")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String addUser(@ModelAttribute User user, Model model) {
-		model.addAttribute("message", userService.addUser(user).getUserName() + " added successfully.");
+		String message = "";
+		if (user.getId() == null) {
+			message = " added";
+		} else {
+			message = " updated";
+		}
+		model.addAttribute("message", userService.addUser(user).getUserName() + message + " successfully.");
 		return "message";
 	}
 
-	@RequestMapping("/list/{id}")
+	@GetMapping("/list/{id}")
 	public User findOne(@PathVariable Long id) {
 		return userService.findOne(id);
 	}

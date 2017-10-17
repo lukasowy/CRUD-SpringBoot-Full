@@ -11,6 +11,7 @@
 
 <body>
 	<form:form method="post" action="${path}/user/add" commandName="userForm">
+	<form:hidden path="id"/>
 		<p>
 			User Id:
 			<form:input path="userIdd" placeholder="Enter User Id" />

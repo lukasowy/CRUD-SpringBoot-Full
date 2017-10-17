@@ -41,7 +41,7 @@ public class AddressServiceImpl implements AddressService {
 	@Override
 	public String deleteAddress(Long id) {
 		addressRepository.delete(id);
-		return "{'message': Address deleted}";
+		return "Address deleted";
 	}
 
 }
