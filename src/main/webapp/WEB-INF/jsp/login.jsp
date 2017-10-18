@@ -21,6 +21,10 @@
 			Password: <input type="password" name="password"
 				placeholder="Enter Password" />
 		</p>
+		<p>
+			<input type="checkbox" name="remember-me" id="remember-me"/>
+			<label>Remember Me</label>
+		</p>
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 		<p>
