@@ -3,6 +3,7 @@ package com.lukasowy.services.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.lukasowy.models.Role;
@@ -35,6 +36,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User addUser(User user) {
+		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		user.setRole(roleRepository.findOne(user.getRole().getId()));
 		return userRepository.save(user);
 	}

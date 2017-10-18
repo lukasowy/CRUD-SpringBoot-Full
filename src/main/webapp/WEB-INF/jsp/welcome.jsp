@@ -16,6 +16,7 @@
 		</form>
 		<p>
 			Welcome ${pageContext.request.userPrincipal.name} | <a
+				href="javascript:void(0);"
 				onclick="document.forms['logoutForm'].submit()">Logout</a>
 		</p>
 		<h1>${message}</h1>
