@@ -10,7 +10,7 @@
 	href="${path}/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
 <style type="text/css">
 body {
-	background: url("https://cdn.pixabay.com/photo/2016/10/10/11/40/sunset-1728163_960_720.jpg") no-repeat center center fixed;
+	background: url("https://static.pexels.com/photos/37403/bora-bora-french-polynesia-sunset-ocean.jpg") no-repeat center center fixed;
 	background-size: cover; display : flex;
 	align-items: center;
 	height: 100vh;
