@@ -4,9 +4,13 @@
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<strong> <span class="glyphicon glyphicon-info-sign"></span>
+		<strong> <span class="glyphicon glyphicon-list"></span>
 			Address List
 		</strong>
+		<div class="pull-right">
+			<a href="javascript:void(0);" onclick="addForm('address')"><span
+				class="glyphicon glyphicon-plus-sign"></span> New Address</a>
+		</div>
 	</div>
 	<div class="panel-body">
 		<table
@@ -28,7 +32,8 @@
 						<td>${address.state}</td>
 						<td>${address.city}</td>
 						<td>${address.user.userName}</td>
-						<td><a href="${path}/address/edit/${address.id}"><span
+						<td><a href="javascript:void(0);"
+							onclick="editForm('address', '${address.id}')"><span
 								class="glyphicon glyphicon-edit"></span></a></td>
 						<td><a href="${path}/address/delete/${address.id}"><span
 								class="glyphicon glyphicon-trash"></span></a></td>

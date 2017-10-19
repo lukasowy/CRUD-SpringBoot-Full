@@ -7,11 +7,23 @@ $(function() {
 	});
 });
 
-function fetchList(type){
+function addForm(type) {
+	modifyDate("/" + type + "/form");
+}
+
+function editForm(type, id) {
+	modifyDate("/" + type + "/edit/" + id);
+}
+
+function fetchList(type) {
+	modifyDate("/" + type + "/list");
+}
+
+function modifyDate(url) {
 	$.ajax({
-		type: "GET",
-		url: "/" + type + "/list",
-		success: function(data){
+		type : "GET",
+		url : url,
+		success : function(data) {
 			$(".panel-body").html(data);
 		}
 	});
