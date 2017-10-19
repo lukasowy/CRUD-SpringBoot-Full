@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="${path}/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+<script type="text/javascript" src="${path}/webjars/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="${path}/jquery.boot.js"></script>
 <title>CRUD Spring Boot Full</title>
 <style>
 .row {
@@ -61,9 +63,9 @@
 			<div class="menu navbar navbar-default">
 				<div class="menu-container">
 					<ul class="nav navbar-nav">
-						<li><a href="${path}/user/list"><span
+						<li><a href="javascript:void(0);" id="userList"><span
 								class="glyphicon glyphicon-user"></span> User List</a></li>
-						<li><a href="${path}/address/list"><span
+						<li><a href="javascript:void(0);" id="addressList"><span
 								class="glyphicon glyphicon-info-sign"></span> Address List</a></li>
 					</ul>
 				</div>
