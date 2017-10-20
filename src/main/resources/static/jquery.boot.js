@@ -24,7 +24,7 @@ function modifyDate(url) {
 		type : "GET",
 		url : url,
 		success : function(data) {
-			$(".panel-body").html(data);
+			$(".inner-jsp").html(data);
 		}
 	});
 }

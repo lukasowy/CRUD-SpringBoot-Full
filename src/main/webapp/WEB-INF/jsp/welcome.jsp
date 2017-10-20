@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="${path}/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
-<script type="text/javascript" src="${path}/webjars/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${path}/webjars/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/jquery.boot.js"></script>
 <title>CRUD Spring Boot Full</title>
 <style>
@@ -32,7 +33,7 @@
 
 <body>
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
-		<form method="post" id="logoutForm" action="${path}/logout">
+		<form id="logoutForm" method="POST" action="${path}/logout">
 			<input type="hidden" name="${_csrf.parameterName}"
 				value="${_csrf.token}" />
 		</form>
@@ -72,7 +73,7 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<div class="panel-body" style="margin-left: 210px;">
+			<div class="inner-jsp panel-body" style="margin-left: 210px;">
 				<h1>${message}</h1>
 				<c:forEach begin="0" end="3" varStatus="loop">
 					<div class="col-md-12">

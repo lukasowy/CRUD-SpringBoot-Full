@@ -9,7 +9,7 @@ public interface AddressService {
 
 	Address findOne(Long id);
 
-	Address addAddress(Address address);
+	String addAddress(Address address);
 
 	String deleteAddress(Long id);
 }

@@ -14,7 +14,6 @@ public class Address extends AbstractPersistable<Long> {
 	private String city;
 	private String state;
 	private String country;
-
 	private transient Long userId;
 
 	@ManyToOne

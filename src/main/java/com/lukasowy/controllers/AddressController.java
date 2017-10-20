@@ -1,14 +1,15 @@
 package com.lukasowy.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lukasowy.models.Address;
 import com.lukasowy.services.AddressService;
@@ -42,24 +43,14 @@ public class AddressController {
 	}
 
 	@GetMapping("/delete/{id}")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String deleteUser(@PathVariable Long id, Model model) {
 		model.addAttribute("message", addressService.deleteAddress(id));
 		return "message";
 	}
 
-	@PostMapping("/add")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String addUaddAddressser(@ModelAttribute Address address, Model model) {
-		String message = "";
-		if (address.getId() == null) {
-			message = " added";
-		} else {
-			message = " updated";
-		}
-		model.addAttribute("message",
-				addressService.addAddress(address).getUser().getUserName() + " address" + message + "successfully");
-		return "message";
+	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String addUaddAddressser(@RequestBody Address address) {
+		return addressService.addAddress(address);
 	}
 
 	@GetMapping("/list/{id}")
@@ -68,7 +59,6 @@ public class AddressController {
 	}
 
 	@GetMapping("/list")
-	@PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 	public String addressList(Model model) {
 		model.addAttribute("addresses", addressService.addressList());
 		return "/address/list";

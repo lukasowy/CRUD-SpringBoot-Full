@@ -1,13 +1,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
+<script type="text/javascript" src="${path}/jquery.save.js"></script>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<strong><span class="glyphicon glyphicon-plus-sign"></span>
 			New User</strong>
 	</div>
 	<form:form method="post" class="form-horizontal"
-		action="${path}/address/add" commandName="addressForm">
+		action="${path}/address/add" commandName="addressForm" id="submitAddressForm">
 		<form:hidden path="id" />
 		<div class="panel-body">
 			<div class="form-group">
@@ -30,7 +31,7 @@
 				</div>
 				<label class="col-md-2 control-label">User:</label>
 				<div class="col-md-4">
-					<form:select class="form-control" path="user.id">
+					<form:select class="form-control" path="userId">
 						<c:forEach items="${users}" var="user">
 							<form:option value="${user.id}">${user.userName}</form:option>
 						</c:forEach>

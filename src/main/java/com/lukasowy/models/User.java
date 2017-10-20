@@ -22,7 +22,7 @@ public class User extends AbstractPersistable<Long> {
 	private String userIdd;
 	private String userName;
 	private String password;
-
+	private transient Long roleId;
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	private Role role;
@@ -30,6 +30,14 @@ public class User extends AbstractPersistable<Long> {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Address> adresses;
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
 
 	public Long getId() {
 		return id;

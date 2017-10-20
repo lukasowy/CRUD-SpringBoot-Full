@@ -2,6 +2,8 @@ package com.lukasowy.services.impl;
 
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,7 +19,7 @@ public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
 	private RoleRepository roleRepository;
-	
+
 	@Autowired
 	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
 		this.userRepository = userRepository;
@@ -35,16 +37,28 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User addUser(User user) {
-		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-		user.setRole(roleRepository.findOne(user.getRole().getId()));
-		return userRepository.save(user);
+	public String addUser(User user) {
+		String message = "";
+		JSONObject jsonObject = new JSONObject();
+		try {
+			if (user.getId() == null) {
+				message = " added";
+			} else {
+				message = " updated";
+			}
+			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+			user.setRole(roleRepository.findOne(user.getRoleId()));
+			jsonObject.put("message", userRepository.save(user).getUserName() + message + " successfully.");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonObject.toString();
 	}
 
 	@Override
 	public String deleteUser(Long id) {
 		userRepository.delete(id);
-		return "User deleted successfully." ;
+		return "User deleted successfully.";
 	}
 
 	@Override

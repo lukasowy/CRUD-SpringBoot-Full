@@ -1,14 +1,16 @@
 package com.lukasowy.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lukasowy.models.User;
 import com.lukasowy.services.UserService;
@@ -57,17 +59,10 @@ public class UserController {
 		return "message";
 	}
 
-	@PostMapping("/add")
+	@PostMapping(value="/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String addUser(@ModelAttribute User user, Model model) {
-		String message = "";
-		if (user.getId() == null) {
-			message = " added";
-		} else {
-			message = " updated";
-		}
-		model.addAttribute("message", userService.addUser(user).getUserName() + message + " successfully.");
-		return "message";
+	public @ResponseBody String addUser(@RequestBody User user) {
+		return userService.addUser(user);
 	}
 
 	@GetMapping("/list/{id}")

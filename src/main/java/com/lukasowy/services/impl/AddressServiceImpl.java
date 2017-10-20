@@ -2,6 +2,8 @@ package com.lukasowy.services.impl;
 
 import java.util.List;
 
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +35,21 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
-	public Address addAddress(Address address) {
-		address.setUser(userRepository.findOne(address.getUser().getId()));
-		return addressRepository.save(address);
+	public String addAddress(Address address) {
+		String message = "";
+		JSONObject jsonObject = new JSONObject();
+		try {
+		if (address.getId() == null) {
+			message = " added";
+		} else {
+			message = " updated";
+		}
+		address.setUser(userRepository.findOne(address.getUserId()));
+			jsonObject.put("message", addressRepository.save(address).getCountry() + message + " successfully.");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonObject.toString();
 	}
 
 	@Override
