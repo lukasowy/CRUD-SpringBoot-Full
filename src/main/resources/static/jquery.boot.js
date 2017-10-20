@@ -28,3 +28,19 @@ function modifyDate(url) {
 		}
 	});
 }
+
+function deleteData(type, id) {
+	if (confirm("Are you sure you want to delete this?")) {
+		$.ajax({
+			type : "GET",
+			url : "/" + type + "/delete/" + id,
+			success : function(data) {
+				fetchList(type);
+				alert(data.message);
+			}
+		});
+	} else {
+		retrun
+		false;
+	}
+}

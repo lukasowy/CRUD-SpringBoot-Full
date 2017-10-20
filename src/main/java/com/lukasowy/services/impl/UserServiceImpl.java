@@ -57,8 +57,14 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String deleteUser(Long id) {
-		userRepository.delete(id);
-		return "User deleted successfully.";
+		JSONObject jsonObject = new JSONObject();
+		try {
+			userRepository.delete(id);
+			jsonObject.put("message", "User deleted successfully.");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonObject.toString();
 	}
 
 	@Override

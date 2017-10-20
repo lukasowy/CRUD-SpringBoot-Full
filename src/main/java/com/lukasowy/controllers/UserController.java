@@ -52,11 +52,10 @@ public class UserController {
 		return "user/form";
 	}
 
-	@GetMapping("/delete/{id}")
+	@GetMapping(value="/delete/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public String deleteUser(@PathVariable Long id, Model model) {
-		model.addAttribute("message", userService.deleteUser(id));
-		return "message";
+	public @ResponseBody String deleteUser(@PathVariable Long id) {
+		return userService.deleteUser(id);
 	}
 
 	@PostMapping(value="/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)

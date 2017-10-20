@@ -17,7 +17,7 @@ public class AddressServiceImpl implements AddressService {
 
 	private AddressRepository addressRepository;
 	private UserRepository userRepository;
-	
+
 	@Autowired
 	public AddressServiceImpl(AddressRepository addressRepository, UserRepository userRepository) {
 		this.addressRepository = addressRepository;
@@ -39,12 +39,12 @@ public class AddressServiceImpl implements AddressService {
 		String message = "";
 		JSONObject jsonObject = new JSONObject();
 		try {
-		if (address.getId() == null) {
-			message = " added";
-		} else {
-			message = " updated";
-		}
-		address.setUser(userRepository.findOne(address.getUserId()));
+			if (address.getId() == null) {
+				message = " added";
+			} else {
+				message = " updated";
+			}
+			address.setUser(userRepository.findOne(address.getUserId()));
 			jsonObject.put("message", addressRepository.save(address).getCountry() + message + " successfully.");
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -54,8 +54,14 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public String deleteAddress(Long id) {
-		addressRepository.delete(id);
-		return "Address deleted";
+		JSONObject jsonObject = new JSONObject();
+		try {
+			addressRepository.delete(id);
+			jsonObject.put("message", "Address deleted");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return jsonObject.toString();
 	}
 
 }

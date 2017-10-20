@@ -42,10 +42,9 @@ public class AddressController {
 		return "address/form";
 	}
 
-	@GetMapping("/delete/{id}")
-	public String deleteUser(@PathVariable Long id, Model model) {
-		model.addAttribute("message", addressService.deleteAddress(id));
-		return "message";
+	@GetMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String deleteUser(@PathVariable Long id) {
+		return addressService.deleteAddress(id);
 	}
 
 	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

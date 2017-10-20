@@ -33,7 +33,8 @@
 						<td><a href="javascript:void(0);"
 							onclick="editForm('user', '${user.id}')"><span
 								class="glyphicon glyphicon-edit"></span></a></td>
-						<td><a href="${path}/user/delete/${user.id}"><span
+						<td><a href="javascript:void(0);"
+							onclick="deleteData('user', '${user.id}')"><span
 								class="glyphicon glyphicon-trash"></span></a></td>
 					</tr>
 				</c:forEach>
