@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lukasowy.models.Address;
+import com.lukasowy.models.User;
 import com.lukasowy.repository.AddressRepository;
 import com.lukasowy.repository.UserRepository;
 import com.lukasowy.services.AddressService;
@@ -40,12 +41,15 @@ public class AddressServiceImpl implements AddressService {
 		JSONObject jsonObject = new JSONObject();
 		try {
 			if (address.getId() == null) {
-				message = " added";
+				message = "Added";
 			} else {
-				message = " updated";
+				message = "Updated";
 			}
-			address.setUser(userRepository.findOne(address.getUserId()));
-			jsonObject.put("message", addressRepository.save(address).getCountry() + message + " successfully.");
+			User user = userRepository.findOne(address.getUserId());
+			address.setUser(user);
+			addressRepository.save(address);
+			jsonObject.put("title", message + " Confirmation");
+			jsonObject.put("message", "Address for "+user.getUserName() + " " + message + " successfully.");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

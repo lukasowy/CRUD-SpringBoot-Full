@@ -1,7 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
-<script type="text/javascript" src="${path}/jquery.save.js"></script>
+<script type="text/javascript" src="${path}/js/jquery.save.js"></script>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<strong><c:choose>
@@ -18,6 +18,14 @@
 		id="submitAddressForm">
 		<form:hidden path="id" />
 		<div class="panel-body">
+			<div class="form-group">
+				<label class="col-md-2 control-label">Address Line:</label>
+				<div class="col-md-10">
+					<form:textarea class="form-control" path="addressLine"
+						placeholder="Enter Street, Landmark and other details"
+						required="true" />
+				</div>
+			</div>
 			<div class="form-group">
 				<label class="col-md-2 control-label">Country:</label>
 				<div class="col-md-4">

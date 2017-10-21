@@ -33,6 +33,9 @@ function saveRequestData(frm, data, type) {
 		data : JSON.stringify(data),
 		success : function(data) {
 			alert(data.message);
+			toastr.success(data.message, data.title, {
+				closeBatton: true
+			});
 			fetchList(type);
 		}
 	});

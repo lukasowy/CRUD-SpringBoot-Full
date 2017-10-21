@@ -11,9 +11,13 @@
 	href="${path}/webjars/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="shortcut icon"
 	href="http://pluspng.com/img-png/shelby-logo-png-shelby-logo-present-1920x1080-hd-png-1920.png">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <script type="text/javascript"
 	src="${path}/webjars/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="${path}/jquery.boot.js"></script>
+<script type="text/javascript" src="${path}/js/jquery.boot.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <title>CRUD Spring Boot Full</title>
 <style>
 .row {

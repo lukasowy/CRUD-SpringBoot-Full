@@ -42,13 +42,14 @@ public class UserServiceImpl implements UserService {
 		JSONObject jsonObject = new JSONObject();
 		try {
 			if (user.getId() == null) {
-				message = " added";
+				message = "Added";
 			} else {
-				message = " updated";
+				message = "Updated";
 			}
 			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 			user.setRole(roleRepository.findOne(user.getRoleId()));
-			jsonObject.put("message", userRepository.save(user).getUserName() + message + " successfully.");
+			jsonObject.put("title", message+" Confirmation");
+			jsonObject.put("message", userRepository.save(user).getUserName() + " " + message + " successfully.");
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

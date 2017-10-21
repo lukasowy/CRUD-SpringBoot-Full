@@ -11,6 +11,7 @@ public class Address extends AbstractPersistable<Long> {
 
 	private static final long serialVersionUID = 1L;
 	private transient Long id;
+	private String addressLine;
 	private String city;
 	private String state;
 	private String country;
@@ -19,6 +20,14 @@ public class Address extends AbstractPersistable<Long> {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	public String getAddressLine() {
+		return addressLine;
+	}
+
+	public void setAddressLine(String addressLine) {
+		this.addressLine = addressLine;
+	}
 
 	public Long getId() {
 		return id;
