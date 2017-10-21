@@ -7,7 +7,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="${path}/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
-<link rel="shortcut icon" href="http://pluspng.com/img-png/shelby-logo-png-shelby-logo-present-1920x1080-hd-png-1920.png">
+<link rel="stylesheet"
+	href="${path}/webjars/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="shortcut icon"
+	href="http://pluspng.com/img-png/shelby-logo-png-shelby-logo-present-1920x1080-hd-png-1920.png">
 <script type="text/javascript"
 	src="${path}/webjars/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/jquery.boot.js"></script>
@@ -67,8 +70,8 @@
 					<ul class="nav navbar-nav">
 						<li><a href="javascript:void(0);" id="userList"><span
 								class="glyphicon glyphicon-user"></span> User List</a></li>
-						<li><a href="javascript:void(0);" id="addressList"><span
-								class="glyphicon glyphicon-info-sign"></span> Address List</a></li>
+						<li><a href="javascript:void(0);" id="addressList"><i
+								class="fa fa-address-card-o"></i> Address List</a></li>
 					</ul>
 				</div>
 			</div>
@@ -86,8 +89,8 @@
 		</div>
 		<div class="navbar navbar-default navbar-fixed-bottom">
 			<div class="container">
-				<div class="col-md-10 navbar-text text-center">&copy; 2017. All
-					Rights Reserved by lukasowy</div>
+				<div class="col-md-10 navbar-text text-center">&copy; 2017.
+					All Rights Reserved by lukasowy</div>
 			</div>
 
 		</div>

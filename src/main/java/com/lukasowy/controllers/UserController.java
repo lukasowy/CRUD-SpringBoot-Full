@@ -40,6 +40,7 @@ public class UserController {
 
 	@GetMapping("/form")
 	public String userForm(Model model) {
+		model.addAttribute("isNew", true);
 		model.addAttribute("userForm", new User());
 		model.addAttribute("roles", userService.roleList());
 		return "user/form";
@@ -47,6 +48,7 @@ public class UserController {
 
 	@GetMapping("/edit/{id}")
 	public String editUser(@PathVariable Long id, Model model) {
+		model.addAttribute("isNew", false);
 		model.addAttribute("userForm", userService.findOne(id));
 		model.addAttribute("roles", userService.roleList());
 		return "user/form";

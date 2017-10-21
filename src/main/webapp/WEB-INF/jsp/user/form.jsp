@@ -5,8 +5,15 @@
 <script type="text/javascript" src="${path}/jquery.save.js"></script>
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<strong><span class="glyphicon glyphicon-plus-sign"></span>
-			New User</strong>
+		<strong> <c:choose>
+				<c:when test="${isNew}">
+					<span class="glyphicon glyphicon-plus-sign"></span>
+				</c:when>
+				<c:otherwise>
+					<span class="glyphicon glyphicon-edit"></span>
+				</c:otherwise>
+			</c:choose> User
+		</strong>
 	</div>
 	<form:form method="post" class="form-horizontal" action="/user/add"
 		commandName="userForm" id="submitUserForm">
@@ -43,7 +50,15 @@
 		<div class="panel-footer">
 			<form:button class="btn btn-xs btn-default" type="submit"
 				value="Save">
-				<span class="glyphicon glyphicon-floppy-disk"></span> Save
+				<span class="glyphicon glyphicon-floppy-disk"></span>
+				<c:choose>
+					<c:when test="${isNew}">
+					Save
+					</c:when>
+					<c:otherwise>
+					Update
+					</c:otherwise>
+				</c:choose>
 			</form:button>
 		</div>
 	</form:form>

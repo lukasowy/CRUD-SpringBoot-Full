@@ -30,6 +30,7 @@ public class AddressController {
 
 	@GetMapping("/form")
 	public String addressForm(Model model) {
+		model.addAttribute("isNew", true);
 		model.addAttribute("addressForm", new Address());
 		model.addAttribute("users", userService.userList());
 		return "address/form";
@@ -37,6 +38,7 @@ public class AddressController {
 
 	@GetMapping("/edit/{id}")
 	public String editAddress(@PathVariable Long id, Model model) {
+		model.addAttribute("isNew", false);
 		model.addAttribute("addressForm", addressService.findOne(id));
 		model.addAttribute("roles", userService.userList());
 		return "address/form";
