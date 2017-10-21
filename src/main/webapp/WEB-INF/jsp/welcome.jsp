@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="${path}/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css">
+<link rel="shortcut icon" href="http://pluspng.com/img-png/shelby-logo-png-shelby-logo-present-1920x1080-hd-png-1920.png">
 <script type="text/javascript"
 	src="${path}/webjars/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="${path}/jquery.boot.js"></script>
@@ -85,7 +86,7 @@
 		</div>
 		<div class="navbar navbar-default navbar-fixed-bottom">
 			<div class="container">
-				<div class="col-md-10 navbar-text text-center">2017. All
+				<div class="col-md-10 navbar-text text-center">&copy; 2017. All
 					Rights Reserved by lukasowy</div>
 			</div>
 
