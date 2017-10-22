@@ -30,17 +30,31 @@ function modifyDate(url) {
 }
 
 function deleteData(type, id) {
-	if (confirm("Are you sure you want to delete this?")) {
-		$.ajax({
-			type : "GET",
-			url : "/" + type + "/delete/" + id,
-			success : function(data) {
-				fetchList(type);
-				alert(data.message);
-			}
-		});
-	} else {
-		retrun
-		false;
-	}
+	toastr
+			.warning(
+					"<div>Are you sure you want to delete this?</div>"
+							+ "<div class='btn-group pull-right'>"
+							+ "<button type='button' id='confirmationYes' class='btn btn-xs btn-dangare'><i class='glyphicon glyphicon-ok'></i> Yes</button>"
+							+ "<button type='button' class='btn btn-xs btn-default clear'><i class='glyphicon glyphicon-remove'></i> No</button>"
+							+ "</div>", "Delete Confirmation", {
+						allowHtml : true,
+						closeButton : true,
+						onShown : function() {
+							$("#confirmationYes").click(
+									function() {
+										$.ajax({
+											type : "GET",
+											url : "/" + type + "/delete/" + id,
+											success : function(data) {
+												fetchList(type);
+												toastr.success(data.message,
+														"Delete Confirmation",
+														{
+															closeButton : true
+														});
+											}
+										});
+									});
+						}
+					});
 }
