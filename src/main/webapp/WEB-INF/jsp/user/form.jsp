@@ -22,7 +22,7 @@
 			<div class="form-group">
 				<label class="col-md-2 control-label">User Id:</label>
 				<div class="col-md-4">
-					<form:input class="form-control" path="userIdd"
+					<form:input class="form-control" path="userId"
 						placeholder="Enter User Id" required="true" />
 				</div>
 				<label class="col-md-2 control-label">User Name:</label>

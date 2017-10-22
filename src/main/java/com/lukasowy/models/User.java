@@ -19,7 +19,7 @@ public class User extends AbstractPersistable<Long> {
 
 	private static final long serialVersionUID = 1L;
 	private transient Long id;
-	private String userIdd;
+	private String userId;
 	private String userName;
 	private String password;
 	private transient Long roleId;
@@ -63,12 +63,12 @@ public class User extends AbstractPersistable<Long> {
 		this.adresses = adresses;
 	}
 
-	public String getUserIdd() {
-		return userIdd;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setUserIdd(String userId) {
-		this.userIdd = userId;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getUserName() {
