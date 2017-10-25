@@ -3,6 +3,8 @@ package com.lukasowy.models;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
@@ -11,9 +13,17 @@ public class Address extends AbstractPersistable<Long> {
 
 	private static final long serialVersionUID = 1L;
 	private transient Long id;
+	@NotNull
+	@Size(min=10, max=100, message="Please enter between {min}-{max} characters")
 	private String addressLine;
+	@NotNull
+	@Size(min=3, max=15, message="Please enter between {min}-{max} characters")
 	private String city;
+	@NotNull
+	@Size(min=3, max=15, message="Please enter between {min}-{max} characters")
 	private String state;
+	@NotNull
+	@Size(min=3, max=15, message="Please enter between {min}-{max} characters")
 	private String country;
 	private transient Long userId;
 

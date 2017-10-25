@@ -1,9 +1,12 @@
 package com.lukasowy.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.lukasowy.models.Address;
 import com.lukasowy.services.AddressService;
 import com.lukasowy.services.UserService;
+import com.lukasowy.utils.ErrorUtils;
 
 @Controller
 @RequestMapping("/address")
@@ -50,8 +54,12 @@ public class AddressController {
 	}
 
 	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String addUaddAddressser(@RequestBody Address address) {
-		return addressService.addAddress(address);
+	public @ResponseBody String addUaddAddressser(@Valid @RequestBody Address address, BindingResult result) {
+		if (result.hasErrors()) {
+			return ErrorUtils.customErrors(result.getAllErrors());
+		} else {
+			return addressService.addAddress(address);
+		}
 	}
 
 	@GetMapping("/list/{id}")
