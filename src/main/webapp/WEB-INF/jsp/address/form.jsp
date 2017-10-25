@@ -44,6 +44,13 @@
 					<form:input class="form-control" path="city"
 						placeholder="Enter City" required="true" />
 				</div>
+				<label class="col-md-2 control-label">Pin Code:</label>
+				<div class="col-md-4">
+					<form:input class="form-control" path="pinCode"
+						placeholder="Enter Pin Code" required="true" />
+				</div>
+			</div>
+			<div class="form-group">
 				<label class="col-md-2 control-label">User:</label>
 				<div class="col-md-4">
 					<form:select class="form-control" path="userId">

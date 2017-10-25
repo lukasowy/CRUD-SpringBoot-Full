@@ -14,22 +14,33 @@ public class Address extends AbstractPersistable<Long> {
 	private static final long serialVersionUID = 1L;
 	private transient Long id;
 	@NotNull
-	@Size(min=10, max=100, message="Please enter between {min}-{max} characters")
+	@Size(min = 10, max = 100, message = "Please enter between {min}-{max} characters")
 	private String addressLine;
 	@NotNull
-	@Size(min=3, max=15, message="Please enter between {min}-{max} characters")
+	@Size(min = 3, max = 15, message = "Please enter between {min}-{max} characters")
 	private String city;
 	@NotNull
-	@Size(min=3, max=15, message="Please enter between {min}-{max} characters")
+	@Size(min = 3, max = 15, message = "Please enter between {min}-{max} characters")
 	private String state;
 	@NotNull
-	@Size(min=3, max=15, message="Please enter between {min}-{max} characters")
+	@Size(min = 3, max = 15, message = "Please enter between {min}-{max} characters")
 	private String country;
+	@NotNull
+	@Size(min = 6, max = 6, message = "Please enter  at least {min} digits")
+	private String pinCode;
 	private transient Long userId;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
+
+	public String getPinCode() {
+		return pinCode;
+	}
+
+	public void setPinCode(String pinCode) {
+		this.pinCode = pinCode;
+	}
 
 	public String getAddressLine() {
 		return addressLine;

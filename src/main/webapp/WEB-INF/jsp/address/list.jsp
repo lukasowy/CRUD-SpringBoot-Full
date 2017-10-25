@@ -21,6 +21,7 @@
 					<th>State</th>
 					<th>City</th>
 					<th>Line</th>
+					<th>Pin Code</th>
 					<th>User</th>
 					<th>Edit</th>
 					<th>Delete</th>
@@ -33,6 +34,7 @@
 						<td>${address.state}</td>
 						<td>${address.city}</td>
 						<td>${address.addressLine}</td>
+						<td>${address.pinCode}</td>
 						<td>${address.user.userName}</td>
 						<td><a href="javascript:void(0);"
 							onclick="editForm('address', '${address.id}')"><span
