@@ -1,10 +1,13 @@
 package com.lukasowy.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lukasowy.models.User;
 import com.lukasowy.services.UserService;
+import com.lukasowy.utils.ErrorUtils;
 
 @Controller
 @RequestMapping("/user")
@@ -54,16 +58,20 @@ public class UserController {
 		return "user/form";
 	}
 
-	@GetMapping(value="/delete/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/delete/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public @ResponseBody String deleteUser(@PathVariable Long id) {
 		return userService.deleteUser(id);
 	}
 
-	@PostMapping(value="/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public @ResponseBody String addUser(@RequestBody User user) {
-		return userService.addUser(user);
+	public @ResponseBody String addUser(@Valid @RequestBody User user, BindingResult result) {
+		if (result.hasErrors()) {
+			return ErrorUtils.customErrors(result.getAllErrors());
+		} else {
+			return userService.addUser(user);
+		}
 	}
 
 	@GetMapping("/list/{id}")

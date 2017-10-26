@@ -17,7 +17,8 @@
 				<tr>
 					<th>User Id</th>
 					<th>User Name</th>
-					<th>Password</th>
+					<th>Email</th>
+					<th>Mobile</th>
 					<th>Role</th>
 					<th>Edit</th>
 					<th>Delete</th>
@@ -28,7 +29,8 @@
 					<tr>
 						<td>${user.userId}</td>
 						<td>${user.userName}</td>
-						<td>${user.password}</td>
+						<td>${user.email}</td>
+						<td>${user.mobile}</td>
 						<td>${user.role.name}</td>
 						<td><a href="javascript:void(0);"
 							onclick="editForm('user', '${user.id}')"><span

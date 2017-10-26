@@ -1,4 +1,3 @@
-
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}"></c:set>
@@ -15,8 +14,8 @@
 			</c:choose> User
 		</strong>
 	</div>
-	<form:form method="post" class="form-horizontal" action="/user/add"
-		commandName="userForm" id="submitUserForm">
+	<form:form method="post" class="form-horizontal"
+		action="${path}/user/add" commandName="userForm" id="submitUserForm">
 		<form:hidden path="id" />
 		<div class="panel-body">
 			<div class="form-group">
@@ -29,6 +28,18 @@
 				<div class="col-md-4">
 					<form:input class="form-control" path="userName"
 						placeholder="Enter User Name" required="true" />
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-md-2 control-label">Email:</label>
+				<div class="col-md-4">
+					<form:input class="form-control" path="email"
+						placeholder="Enter Email Address" required="true" />
+				</div>
+				<label class="col-md-2 control-label">Mobile:</label>
+				<div class="col-md-4">
+					<form:input class="form-control" path="mobile"
+						placeholder="Enter Mobile Number" required="true" />
 				</div>
 			</div>
 			<div class="form-group">

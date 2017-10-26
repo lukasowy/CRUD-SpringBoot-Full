@@ -4,9 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
+
+import com.lukasowy.utils.ConstantUtils;
 
 @Entity
 public class Address extends AbstractPersistable<Long> {
@@ -18,12 +21,15 @@ public class Address extends AbstractPersistable<Long> {
 	private String addressLine;
 	@NotNull
 	@Size(min = 3, max = 15, message = "Please enter between {min}-{max} characters")
+	@Pattern(regexp=ConstantUtils.CHAR_PATTERN, message="Please enter only characters")
 	private String city;
 	@NotNull
 	@Size(min = 3, max = 15, message = "Please enter between {min}-{max} characters")
+	@Pattern(regexp=ConstantUtils.CHAR_PATTERN, message="Please enter only characters")
 	private String state;
 	@NotNull
 	@Size(min = 3, max = 15, message = "Please enter between {min}-{max} characters")
+	@Pattern(regexp=ConstantUtils.CODE_PATTERN, message="Please enter only digits")
 	private String country;
 	@NotNull
 	@Size(min = 6, max = 6, message = "Please enter  at least {min} digits")

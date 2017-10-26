@@ -17,7 +17,8 @@ public class ErrorUtils {
 			for (ObjectError objectError : errors) {
 				if (objectError instanceof FieldError) {
 					FieldError fieldError = (FieldError) objectError;
-					errorMessage += "<b>" + fieldError.getField() + " :</b>" + fieldError.getDefaultMessage() + "</br>";
+					errorMessage += "<b>" + MethodUtils.convertString(fieldError.getField()) + " :</b>"
+							+ fieldError.getDefaultMessage() + "</br>";
 				}
 			}
 			jsonObject.put("message", errorMessage);
