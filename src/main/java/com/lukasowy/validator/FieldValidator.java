@@ -26,7 +26,7 @@ public class FieldValidator implements ConstraintValidator<Validate, String> {
 		if (input.length() < min) {
 			return false;
 		}
-		if (input.length() < max) {
+		if (input.length() > max) {
 			return false;
 		}
 		if (regexp.length() > 1) {
