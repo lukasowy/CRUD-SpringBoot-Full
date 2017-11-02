@@ -72,4 +72,10 @@ public class AddressController {
 		model.addAttribute("addresses", addressService.addressList());
 		return "/address/list";
 	}
+	@GetMapping("/refresh")
+	public String refreshCache(Model model) {
+		addressService.refreshCache();
+		model.addAttribute("addresses", addressService.addressList());
+		return "/address/list";
+	}
 }

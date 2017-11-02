@@ -13,6 +13,8 @@ public interface UserService {
 	String addUser(User user);
 
 	String deleteUser(Long id);
-	
+
 	List<Role> roleList();
+
+	void refreshCache();
 }

@@ -5,9 +5,13 @@
 	<div class="panel-heading">
 		<strong><span class="glyphicon glyphicon-list"></span> User
 			List</strong>
-		<div class="pull-right">
-			<a href="javascript:void(0);" onclick="addForm('user')"><span
-				class="glyphicon glyphicon-plus-sign"></span> New User</a>
+		<div class="btn-group pull-right">
+			<a href="javascript:void(0);" class="btn btn-default btn-sm"
+				onclick="addForm('user')" title="Add New User"><span
+				class="glyphicon glyphicon-plus-sign"></span></a> <a
+				href="javascript:void(0);" class="btn btn-default btn-sm"
+				onclick="refresh('user')" title="Refresh User"><span
+				class="glyphicon glyphicon-refresh"></span></a>
 		</div>
 	</div>
 	<div class="panel-body">

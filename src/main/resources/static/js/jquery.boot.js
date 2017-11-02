@@ -18,7 +18,9 @@ function editForm(type, id) {
 function fetchList(type) {
 	modifyDate("/" + type + "/list");
 }
-
+function refresh(type) {
+	modifyDate("/" + type + "/refresh");
+}
 function modifyDate(url) {
 	$.ajax({
 		type : "GET",

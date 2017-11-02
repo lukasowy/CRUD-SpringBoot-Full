@@ -7,9 +7,13 @@
 		<strong> <span class="glyphicon glyphicon-list"></span>
 			Address List
 		</strong>
-		<div class="pull-right">
-			<a href="javascript:void(0);" onclick="addForm('address')"><span
-				class="glyphicon glyphicon-plus-sign"></span> New Address</a>
+		<div class="btn-group pull-right">
+			<a href="javascript:void(0);" class="btn btn-default btn-sm"
+				onclick="addForm('address')" title="Add New Address"><span
+				class="glyphicon glyphicon-plus-sign"></span></a> <a
+				href="javascript:void(0);" class="btn btn-default btn-sm"
+				onclick="refresh('address')" title="Refresh Address"><span
+				class="glyphicon glyphicon-refresh"></span></a>
 		</div>
 	</div>
 	<div class="panel-body">

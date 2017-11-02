@@ -85,5 +85,12 @@ public class UserController {
 		model.addAttribute("users", userService.userList());
 		return "/user/list";
 	}
+	
+	@GetMapping("/refresh")
+	public String refreshCache(Model model) {
+		userService.refreshCache();
+		model.addAttribute("users", userService.userList());
+		return "/user/list";
+	}
 
 }

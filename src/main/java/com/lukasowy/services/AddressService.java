@@ -12,4 +12,6 @@ public interface AddressService {
 	String addAddress(Address address);
 
 	String deleteAddress(Long id);
+
+	void refreshCache();
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -69,6 +70,11 @@ public class AddressServiceImpl implements AddressService {
 			e.printStackTrace();
 		}
 		return jsonObject.toString();
+	}
+	
+	@Override
+	@CacheEvict(value = "addressCache", allEntries=true) // replace old cache with the new
+	public void refreshCache() {
 	}
 
 }
