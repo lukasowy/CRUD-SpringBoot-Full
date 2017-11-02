@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -18,6 +19,7 @@ import com.lukasowy.repository.UserRepository;
 import com.lukasowy.services.UserService;
 
 @Service
+@CacheConfig(cacheNames={"userCache"}) //instead of putting cache value everytime we can put once and we can put multiple cache names in that array
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
@@ -30,7 +32,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@Cacheable("userCache")
+	@Cacheable
+	//@Cacheable("userCache")
 	public List<User> userList() {
 		return userRepository.findAll();
 	}
@@ -41,7 +44,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@CachePut(value = "userCache", key = "#user")
+	@CachePut(key = "#user")
+	//@CachePut(value = "userCache", key = "#user")
 	public String addUser(User user) {
 		String message = "";
 		JSONObject jsonObject = new JSONObject();
@@ -63,7 +67,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@CacheEvict(value = "userCache", allEntries=true)
+	@CacheEvict(allEntries=true)
+	//@CacheEvict(value = "userCache", allEntries=true)
 	public String deleteUser(Long id) {
 		JSONObject jsonObject = new JSONObject();
 		try {
@@ -81,7 +86,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	@CacheEvict(value = "userCache", allEntries=true) // replace old cache with the new
+	@CacheEvict(allEntries=true) // replace old cache with the new
+	//@CacheEvict(value = "userCache", allEntries=true) // replace old cache with the new
 	public void refreshCache() {
 	}
 

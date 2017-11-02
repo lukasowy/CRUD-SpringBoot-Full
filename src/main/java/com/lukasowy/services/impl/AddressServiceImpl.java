@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import com.lukasowy.models.Address;
@@ -40,7 +41,10 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
-	@CachePut(value = "addressCache", key = "#address")
+	@Caching(put = {
+			@CachePut(value = "addressCache", key = "#address")
+	})
+	//@CachePut(value = "addressCache", key = "#address")
 	public String addAddress(Address address) {
 		String message = "";
 		JSONObject jsonObject = new JSONObject();
@@ -76,7 +80,10 @@ public class AddressServiceImpl implements AddressService {
 	}
 	
 	@Override
-	@CacheEvict(value = "addressCache", allEntries=true) // replace old cache with the new
+	@Caching(evict = {
+			@CacheEvict(value = "addressCache", allEntries=true)	
+	})
+	//@CacheEvict(value = "addressCache", allEntries=true) // replace old cache with the new
 	public void refreshCache() {
 	}
 
