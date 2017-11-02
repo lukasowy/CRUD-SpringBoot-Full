@@ -6,6 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +40,7 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
+	@CachePut(value = "addressCache", key = "#address")
 	public String addAddress(Address address) {
 		String message = "";
 		JSONObject jsonObject = new JSONObject();
@@ -61,6 +63,7 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
+	@CacheEvict(value = "addressCache", allEntries=true)
 	public String deleteAddress(Long id) {
 		JSONObject jsonObject = new JSONObject();
 		try {
