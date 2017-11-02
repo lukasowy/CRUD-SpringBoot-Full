@@ -28,7 +28,7 @@ public class Address extends AbstractPersistable<Long> {
 	@Validate(min = 3, max = 15, regexp=ConstantUtils.CHAR_PATTERN,  message = "Please enter between {min}-{max} characters")
 	private String country;
 	@NotNull
-	@Validate(min = 6, max = 6, regexp=ConstantUtils.CODE_PATTERN,  message = "Please enter between {min}-{max} digits")
+	@Validate(min = 5, max = 5, regexp=ConstantUtils.CODE_PATTERN,  message = "Please enter between {min}-{max} digits")
 	private String pinCode;
 	private transient Long userId;
 

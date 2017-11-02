@@ -5,6 +5,7 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.lukasowy.models.Address;
@@ -26,6 +27,7 @@ public class AddressServiceImpl implements AddressService {
 	}
 
 	@Override
+	@Cacheable("addressCache")
 	public List<Address> addressList() {
 		return addressRepository.findAll();
 	}
